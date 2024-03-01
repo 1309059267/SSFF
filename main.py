@@ -236,9 +236,8 @@ def evaluate(model, data_loader, device):
             pair_labels = get_senti_label(pair_indices, pairs, sentiments, sentence_len)
             pair_num_correct += torch.logical_and(torch.tensor(pair_labels) == pair_preds.cpu().argmax(-1), pair_preds.cpu().argmax(-1) != 0).sum().item()
             pair_num_infer += (pair_preds.cpu().argmax(-1) != 0).sum().item()
-            # for sentiment in sentiments:
-            #     pair_num_label += len(sentiment)
-            pair_num_label += (torch.tensor(pair_labels) != 0).sum().item()
+            for sentiment in sentiments:
+                pair_num_label += len(sentiment)
 
     span_precision = float(span_num_correct/span_num_infer) if span_num_infer else 0 
     span_recall = float(span_num_correct/span_num_label) if span_num_label else 0 
