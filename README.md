@@ -1,3 +1,3 @@
 # SSFF
 
-Our code will be released soon.
+Detailed instructions for using the code will be refined soon.
